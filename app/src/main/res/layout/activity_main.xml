@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity"
     >
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/head_item_recyclerview"
         android:layout_width="409dp"
@@ -15,5 +14,4 @@
         tools:layout_editor_absoluteY="1dp"
         android:orientation="horizontal"
         />
-
 </LinearLayout>
