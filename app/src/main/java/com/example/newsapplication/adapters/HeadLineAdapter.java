@@ -43,7 +43,7 @@ public class HeadLineAdapter extends RecyclerView.Adapter<HeadLineAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return newsArticleList.size();
+        return newsArticleList != null ? newsArticleList.size() : 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,5 +58,10 @@ public class HeadLineAdapter extends RecyclerView.Adapter<HeadLineAdapter.ViewHo
             newsImage = itemView.findViewById(R.id.news_image);
             newsCard = itemView.findViewById(R.id.news_cardview);
         }
+    }
+
+    public void updateData(List<NewsArticle> newData){
+        this.newsArticleList = newData;
+        notifyDataSetChanged();
     }
 }
