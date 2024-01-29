@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         final APIInterface apiService = ApiClient.getClient().create(APIInterface.class);
-        Call<NewsApiResponse> call = apiService.getHeadlines("in", "general", "q", Constants.API_KEY);
+        Call<NewsApiResponse> call = apiService.getHeadlines("in", "general", null, Constants.API_KEY);
        call.enqueue(new Callback<NewsApiResponse>() {
          @Override
            public void onResponse(@NonNull Call<NewsApiResponse> call, @NonNull Response<NewsApiResponse> response) {
@@ -60,14 +60,11 @@ public class MainActivity extends AppCompatActivity {
                     if(newsApiResponse != null){
                         List<NewsArticle> newsArticles = newsApiResponse.getNewsArticleList();
                         headLineAdapter.updateData(newsArticles);
-                    if(newsArticles.size()>0){
-                        headLineAdapter.updateData(newsArticles);
-
-                    }
+                    }else{
+                        Log.e("Error","Empty respnse body");
                     }
                 }
             }
-
             @Override
            public void onFailure(@NonNull Call<NewsApiResponse> call, @NonNull Throwable t) {
                 Log.e("out", t.toString());
